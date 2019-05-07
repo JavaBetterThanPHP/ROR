@@ -7,10 +7,10 @@ To fully use the dev env, you need a unix env (in order to use traefik)
 
 ### prerequisites :
 
-    - yarn
-    - make
-    - docker
-    - docker-compose
+- yarn
+- make
+- docker
+- docker-compose
 
 **Build**
 ```
