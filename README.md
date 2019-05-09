@@ -5,6 +5,13 @@ Feel free to fork it and use any front framework you need !
 
 To fully use the dev env, you need a unix env (in order to use traefik)
 
+### prerequisites :
+
+- yarn
+- make
+- docker
+- docker-compose
+
 **Build**
 ```
 docker-compose build
