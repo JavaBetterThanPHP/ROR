@@ -11,6 +11,14 @@ GIT
       tty-screen (~> 0.6.5)
       tty-tree (~> 0.2.0)
 
+GIT
+  remote: https://github.com/tcocca/acts_as_follower
+  revision: c5ac7b9601c4af01eb4d9112330b27be4d694ecc
+  branch: master
+  specs:
+    acts_as_follower (0.2.1)
+      activerecord (>= 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -177,6 +185,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_follower!
   bootsnap (>= 1.1.0)
   byebug
   faker!

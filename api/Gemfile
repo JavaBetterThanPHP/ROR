@@ -47,3 +47,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
+gem 'acts_as_follower', :git => 'https://github.com/tcocca/acts_as_follower', branch: 'master'

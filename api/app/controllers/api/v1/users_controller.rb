@@ -10,9 +10,9 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    render json: @user.as_json(:include => :follows)
   end
-
+  
   # POST /users
   def create
     @user = User.new(user_params)
