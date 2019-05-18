@@ -19,9 +19,6 @@ require 'faker'
         firstname: Faker::Name.first_name,
         lastname: Faker::Name.last_name
     )
-    #user.follow(User.find(Faker::Number.between(1,100)))
-    #user.follow(User.find(Faker::Number.between(1,100)))
-    #user.follow(User.find(Faker::Number.between(1,100)))
 end
 
 100.times do
@@ -50,4 +47,17 @@ end
         user: User.find(Faker::Number.between(1,100))
     )
     post.tags << Tag.find(Faker::Number.between(1,100))
+    post.tags << Tag.find(Faker::Number.between(1,100))
+    post.tags << Tag.find(Faker::Number.between(1,100))
+end
+
+500.times do
+    user = User.find(Faker::Number.between(1,100))
+    user.favorites << Post.find(Faker::Number.between(1,100))
+    user.bookmarks << Post.find(Faker::Number.between(1,100))
+    user.favorites << Post.find(Faker::Number.between(1,100))
+    user.bookmarks << Post.find(Faker::Number.between(1,100))
+    user.follow(User.find(Faker::Number.between(1,100)))
+    user.follow(User.find(Faker::Number.between(1,100)))
+    user.follow(User.find(Faker::Number.between(1,100)))
 end

@@ -4,13 +4,12 @@ class Api::V1::TypesController < ApplicationController
   # GET /types
   def index
     @types = Type.all
-
     render json: @types
   end
 
   # GET /types/1
   def show
-    render json: @type
+    render json: @type.as_json(:include => :posts)
   end
 
   # POST /types

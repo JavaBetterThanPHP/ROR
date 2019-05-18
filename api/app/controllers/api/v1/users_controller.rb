@@ -10,7 +10,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user.as_json(:include => :follows)
+    render json: @user.as_json(:include =>[:follows,:favorites,:bookmarks])
   end
   
   # POST /users
