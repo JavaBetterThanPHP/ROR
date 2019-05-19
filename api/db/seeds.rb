@@ -61,3 +61,5 @@ end
     user.follow(User.find(Faker::Number.between(1,100)))
     user.follow(User.find(Faker::Number.between(1,100)))
 end
+
+# Comment belongs to one user
