@@ -11,7 +11,7 @@ require 'faker'
 100.times do
     user = User.create(
         email: Faker::Internet.safe_email,
-        password: Faker::Internet.password(15,20,true,true),
+        password_digest: Faker::Internet.password(15,20,true,true),
         birthdate: Faker::Date.birthday(18,65),
         description: Faker::Lorem.sentence(15),
         profilePictureUrl: Faker::Internet.url,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_18_164728) do
+ActiveRecord::Schema.define(version: 2019_05_19_223808) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id"
@@ -83,8 +83,6 @@ ActiveRecord::Schema.define(version: 2019_05_18_164728) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
     t.date "birthdate"
     t.string "description"
     t.string "profilePictureUrl"
@@ -93,6 +91,9 @@ ActiveRecord::Schema.define(version: 2019_05_18_164728) do
     t.string "lastname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "email"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "users_posts", force: :cascade do |t|
