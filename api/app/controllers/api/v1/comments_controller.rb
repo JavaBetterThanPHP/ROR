@@ -1,5 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :authenticate_and_set_user
 
   # GET /comments
   def index

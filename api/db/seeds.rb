@@ -63,3 +63,19 @@ end
 end
 
 # Comment belongs to one user
+
+#Create user json
+
+# URL
+# POST "/users/sign_up"
+# Request body
+# {
+#     "email": "lorenzo.canavaggio@laposte.net",
+#     "password": "porunga" ,
+#     "birthdate": "Mar, 28 Mar 1991",
+#     "description": "Web Developer",
+#     "profilePictureUrl": "https://www.docker.com/sites/default/files/social/docker_facebook_share.png",
+#     "inscriptionDate": "Mar, 28 Mar 1991",
+#     "firstname": "Canavaggio",
+#     "lastname": "Lorenzo"
+# }

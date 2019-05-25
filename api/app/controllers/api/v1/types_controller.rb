@@ -1,5 +1,6 @@
 class Api::V1::TypesController < ApplicationController
   before_action :set_type, only: [:show, :update, :destroy]
+  before_action :authenticate_and_set_user
 
   # GET /types
   def index

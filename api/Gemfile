@@ -53,4 +53,13 @@ gem 'acts_as_follower', :git => 'https://github.com/tcocca/acts_as_follower', br
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
 end
+
 gem 'rswag'
+
+gem 'api_guard', '~> 0.2.1'
+
+gem 'bcrypt'
+
+group :development, :test do
+  gem 'rails-env-credentials'
+end

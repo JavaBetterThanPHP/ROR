@@ -1,5 +1,6 @@
 class Api::V1::TagsController < ApplicationController
   before_action :set_tag, only: [:show, :update, :destroy]
+  before_action :authenticate_and_set_user
 
   # GET /tags
   def index
