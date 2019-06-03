@@ -63,3 +63,5 @@ gem 'bcrypt'
 group :development, :test do
   gem 'rails-env-credentials'
 end
+
+gem 'rack-cors'

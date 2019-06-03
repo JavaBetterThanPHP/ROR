@@ -9,6 +9,19 @@ run:
 
 install:
 	cd front && yarn install
+	docker exec -it ruby-api-react bundle install
+
+create-db:
+	docker-compose run ruby rake db:create
+
+migrate-db:
+	docker-compose run ruby rake db:migrate
+
+drop-db:
+	docker-compose run ruby rake db:drop
+
+bash:
+	docker exec -it ruby-api-react bash
 
 clean-front:
 	cd front && \

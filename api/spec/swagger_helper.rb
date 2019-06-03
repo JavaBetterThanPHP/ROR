@@ -19,7 +19,164 @@ RSpec.configure do |config|
         title: 'API V1',
         version: 'v1'
       },
-      paths: {}
+      host: "localhost:3000",
+      basePath: "/api/v1",
+      securityDefinitions:{
+        Bearer:{
+          type: 'apiKey',
+          name: 'Authorization',
+          in: 'header'
+        },
+        apiKey: {
+          type: :apiKey,
+          name: 'api_key',
+          in: :query
+        },
+        basic: {
+          type: :basic
+        }
+      },
+      paths: {},
+      definitions: {
+        User: {
+          type: "object",
+          properties: {
+            id: {
+              type: "integer"
+            },
+            birthdate: {
+              type: "string",
+              format: "date-time"
+            },
+            description: {
+              type: "string"
+            },
+            profilePictureUrl: {
+              type: "string"
+            },
+            inscriptionDate: {
+              type: "string",
+              format: "date-time"
+            },
+            firstname: {
+              type: "string"
+            },
+            lastname: {
+              type: "string"
+            },
+            created_at: {
+              type: "string",
+              format: "date-time"
+            },
+            updated_at: {
+              type: "string",
+              format: "date-time"
+            },
+            password_digest: {
+              type: "string"
+            },
+            email: {
+              type: "string"
+            }
+          },
+          xml: {
+            name: "User"
+          }
+        },
+        Post: {
+          type: "object",
+          properties: {
+            id: {
+              type: "integer"
+            },
+            title: {
+              type: "string"
+            },
+            description: {
+              type: "string"
+            },
+            date: {
+              type: "string",
+              format: "date-time"
+            },
+            timeToRead: {
+              type: "integer"
+            },
+            mainImage: {
+              type: "string"
+            },
+            score: {
+              type: "integer"
+            },
+            content: {
+              type: "string"
+            },
+            created_at: {
+              type: "string",
+              format: "date-time"
+            },
+            updated_at: {
+              type: "string",
+              format: "date-time"
+            },
+            user: {
+              '$ref': "#/definitions/User"
+            },
+            type: {
+              '$ref': "#/definitions/Type"
+            }
+          },
+          xml: {
+            name: "Post"
+          }
+        },
+        Type: {
+          type: "object",
+          properties: {
+            id: {
+              type: "integer"
+            },
+            description: {
+              type: "string"
+            },
+            created_at: {
+              type: "string",
+              format: "date-time"
+            },
+            updated_at: {
+              type: "string",
+              format: "date-time"
+            }
+          },
+          xml: {
+            name: "Type"
+          }
+        },
+        Tag: {
+          type: "object",
+          properties: {
+            id: {
+              type: "integer",
+              format: "int64"
+            },
+            name: {
+              type: "string",
+              example: "doggie"
+            },
+            created_at: {
+              type: "string",
+              format: "date-time"
+            },
+            updated_at: {
+              type: "string",
+              format: "date-time"
+            }
+          },
+          xml: {
+            name: "Tag"
+          }
+        }
+      }
     }
   }
 end

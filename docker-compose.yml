@@ -1,13 +1,13 @@
-version: '3'
+version: '3.7'
 
 services:
   db:
-    container_name: database
+    container_name: database-react
     image: postgres
     volumes:
       - .docker/db:/var/lib/postgresql/data
   ruby:
-    container_name: ruby-api
+    container_name: ruby-api-react
     build:
       context: .
       dockerfile: .docker/ruby/Dockerfile
@@ -23,20 +23,20 @@ services:
           - db
 
   front:
-    container_name: vuejs-front
+    container_name: react-front
     image: node:lts-alpine
     working_dir: /home/myproject/front
     volumes:
       - ./front:/home/myproject/front
     ports:
-      - "8080:8080"
+      - "7000:3000"
     labels:
       - "traefik.frontend.rule=Host:myproject.test"
       - "traefik.port=8080"
-    command: ["yarn", "serve"]
+    command: ["yarn", "start"]
 
   traefik:
-    container_name: traefik
+    container_name: traefik-react
     image: traefik:latest
     command: --api --docker
     ports:
@@ -48,4 +48,4 @@ services:
       - ./.docker/traefik/traefik.toml:/etc/traefik/traefik.toml:ro
     labels:
       - "traefik.frontend.rule=Host:traefik.myproject.test"
-      - "traefik.port=8080"
+      - "traefik.port=7000"
