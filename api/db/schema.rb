@@ -96,11 +96,4 @@ ActiveRecord::Schema.define(version: 2019_05_19_223808) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  create_table "users_posts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
-    t.index ["post_id"], name: "index_users_posts_on_post_id"
-    t.index ["user_id"], name: "index_users_posts_on_user_id"
-  end
-
 end

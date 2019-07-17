@@ -6,6 +6,7 @@ services:
     image: postgres
     volumes:
       - .docker/db:/var/lib/postgresql/data
+      
   ruby:
     container_name: ruby-api-react
     build:
