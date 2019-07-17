@@ -45,3 +45,23 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'kaminari'
+
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
+gem 'acts_as_follower', :git => 'https://github.com/tcocca/acts_as_follower', branch: 'master'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+end
+
+gem 'rswag'
+
+gem 'api_guard', '~> 0.2.1'
+
+gem 'bcrypt'
+
+group :development, :test do
+  gem 'rails-env-credentials'
+end
+
+gem 'rack-cors'

@@ -2,12 +2,12 @@ version: '3.7'
 
 services:
   db:
-    container_name: database
+    container_name: database-react
     image: postgres
     volumes:
       - .docker/db:/var/lib/postgresql/data
   ruby:
-    container_name: ruby-api
+    container_name: ruby-api-react
     build:
       context: .
       dockerfile: .docker/ruby/Dockerfile
@@ -22,21 +22,19 @@ services:
     depends_on:
           - db
 
-  front:
-    container_name: react-front
-    image: node:lts-alpine
-    working_dir: /home/myproject/front
-    volumes:
-      - ./front:/home/myproject/front
-    ports:
-      - "7000:3000"
-    labels:
-      - "traefik.frontend.rule=Host:myproject.test"
-      - "traefik.port=8080"
-    command: ["yarn", "start"]
+  client:
+   build: './client'
+   volumes:
+     - './client:/home/node/app:rw,consistent'
+   working_dir: '/home/node/app'
+   environment: 
+     JWT_SECRET: "MyBestSecret"
+   command: 'yarn start'
+   ports:
+     - 127.0.0.1:3001:3002
 
   traefik:
-    container_name: traefik
+    container_name: traefik-react
     image: traefik:latest
     command: --api --docker
     ports:

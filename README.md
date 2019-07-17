@@ -2,7 +2,7 @@
 
 ## Getting started :
 
-To fully use the dev env, you need a unix env (in order to use traefik)
+To fully use the dev env, you need a unix env 
 
 **Build**
 ```
@@ -23,7 +23,8 @@ Back : api.myproject.test (back = 3000)
 
 *You can change the urls in the docker-compose.yml & in .docker/traefik/traefik.toml*
 
-
+**Initialize the database**
+Run `rails db:seed' in rails console
 
 ## Others commands :
 
@@ -66,3 +67,31 @@ make bash
 ```
 make clean-front
 ```
+
+**Swagger**
+
+http://0.0.0.0:3000/api-docs/index.html
+
+**Sign up**
+
+http://localhost:3000/users/sign_up
+{
+"email":"lorenzo.canavaggio111@laposte.net",
+"password":"test",
+"password_confirmation": "test",
+"birthdate":"Mar, 28 Mar 1991",
+"description":"Web Developer",
+"profilePictureUrl":"https://www.docker.com/sites/default/files/social/docker_facebook_share.png",
+"inscriptionDate":"Mar, 28 Mar 1991",
+"firstname":"Canavaggio",
+"lastname":"Lorenzo"
+}
+
+this gives the JWT token in headers
+
+Every other request requires the token in header ex :
+"Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMTQsImV4cCI6MTU1OTU3NjExNywiaWF0IjoxNTU5NDg5NzE3fQ.qTMieYZz8IkGPdp1JXpm1aRq3l730QaZbWRwAVrBV-k"
+
+**Access rails container from Docker**
+
+`docker exec -ti [container] bash`
