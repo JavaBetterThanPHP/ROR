@@ -26,11 +26,10 @@ export function getLoggedUser(dispatch) {
       }
     })
     .then(data => {
-      delete data[0].password;
       dispatch({
         type: "APP_GET_CURRENT_USER_SUCCEED",
         payload: {
-          user: data[0]
+          user: data
         }
       });
     })

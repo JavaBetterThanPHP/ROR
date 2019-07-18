@@ -15,7 +15,8 @@ const useStyles = makeStyles(theme => ({
     overflowX: "auto"
   },
   table: {
-    minWidth: 650
+    minWidth: 650,
+    marginTop: 48
   }
 }));
 
@@ -23,39 +24,35 @@ export default function DashboardPostsTable({ posts = [] }) {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell align="right">Time to Read</TableCell>
-            <TableCell align="right">Score</TableCell>
-            <TableCell align="right">Date</TableCell>
+    <Table className={classes.table}>
+      <TableHead>
+        <TableRow>
+          <TableCell>Title</TableCell>
+          <TableCell align="right">Time to Read</TableCell>
+          <TableCell align="right">Score</TableCell>
+          <TableCell align="right">Date</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {/* IF NO DATA */}
+        {posts.length === 0 && (
+          <TableRow key="nodata">
+            <TableCell>No data found</TableCell>
           </TableRow>
-        </TableHead>
-        <TableBody>
-          {/* IF NO DATA */}
-          {posts.length === 0 && (
-            <TableRow key="nodata">
-              <TableCell>No data found</TableCell>
-            </TableRow>
-          )}
+        )}
 
-          {/* DISPLAYING DATA */}
-          {posts.map(post => (
-            <TableRow key={post._id}>
-              <TableCell component="th" scope="row">
-                {post.title}
-              </TableCell>
-              <TableCell align="right">{post.timetoread}</TableCell>
-              <TableCell align="right">{post.score}</TableCell>
-              <TableCell align="right">
-                {moment().format("DD-MM-YYYY")}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
+        {/* DISPLAYING DATA */}
+        {posts.map(post => (
+          <TableRow key={post._id}>
+            <TableCell component="th" scope="row">
+              {post.title}
+            </TableCell>
+            <TableCell align="right">{post.timeToRead}</TableCell>
+            <TableCell align="right">{post.score}</TableCell>
+            <TableCell align="right">{moment().format("DD-MM-YYYY")}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 }
