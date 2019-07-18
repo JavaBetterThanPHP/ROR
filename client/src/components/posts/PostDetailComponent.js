@@ -119,6 +119,7 @@ export default function PostDetailComponent({
               <Button
                 variant="outlined"
                 size="small"
+                disabled={true} // NOT WORKING
                 className={classes.button}
                 onClick={handleSaveToBookmarks}
               >
@@ -134,6 +135,7 @@ export default function PostDetailComponent({
               <Button
                 variant="outlined"
                 size="small"
+                disabled={true} // NOT WORKING
                 className={classes.button}
                 onClick={handleFavorite}
               >
@@ -195,18 +197,20 @@ export default function PostDetailComponent({
           )}
 
           {/* CONTENT */}
-          {<div
-            style={{ marginTop: 48 }}
-            dangerouslySetInnerHTML={{
-              __html: draftToHtml(
-                convertToRaw(
-                  EditorState.createWithContent(
-                    convertFromRaw(JSON.parse(post.content))
-                  ).getCurrentContent()
+          {
+            <div
+              style={{ marginTop: 48 }}
+              dangerouslySetInnerHTML={{
+                __html: draftToHtml(
+                  convertToRaw(
+                    EditorState.createWithContent(
+                      convertFromRaw(JSON.parse(post.content))
+                    ).getCurrentContent()
+                  )
                 )
-              )
-            }}
-          />}
+              }}
+            />
+          }
         </Grid>
         {/* ---- */}
 
