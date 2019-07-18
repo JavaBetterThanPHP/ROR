@@ -51,16 +51,16 @@ end
     post.tags << Tag.find(Faker::Number.between(1,100))
 end
 
-100.times do
-    user = User.find(Faker::Number.between(1,100))
-    user.favorites << Post.find(Faker::Number.between(1,100))
-    user.bookmarks << Post.find(Faker::Number.between(1,100))
-    user.favorites << Post.find(Faker::Number.between(1,100))
-    user.bookmarks << Post.find(Faker::Number.between(1,100))
-    user.follow(User.find(Faker::Number.between(1,100)))
-    user.follow(User.find(Faker::Number.between(1,100)))
-    user.follow(User.find(Faker::Number.between(1,100)))
-end
+# 100.times do
+#     user = User.find(Faker::Number.between(1,100))
+#     user.favorites << Post.find(Faker::Number.between(1,100))
+#     user.bookmarks << Post.find(Faker::Number.between(1,100))
+#     user.favorites << Post.find(Faker::Number.between(1,100))
+#     user.bookmarks << Post.find(Faker::Number.between(1,100))
+#     user.follow(User.find(Faker::Number.between(1,100)))
+#     user.follow(User.find(Faker::Number.between(1,100)))
+#     user.follow(User.find(Faker::Number.between(1,100)))
+# end
 
 # Comment belongs to one user
 

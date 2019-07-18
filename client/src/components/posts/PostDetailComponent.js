@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { Chip, Grid, ButtonBase, Button } from "@material-ui/core";
+import { Grid, ButtonBase, Button } from "@material-ui/core";
 import moment from "moment";
 import { Bookmarks, FavoriteOutlined } from "@material-ui/icons";
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js";

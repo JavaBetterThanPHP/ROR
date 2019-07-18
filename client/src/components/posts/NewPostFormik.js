@@ -184,7 +184,6 @@ const formikEnhancer = withFormik({
       ...values,
       content: JSON.stringify(convertToRaw(values.content.getCurrentContent()))
     });
-    console.log(values);
     setSubmitting(false);
   },
 

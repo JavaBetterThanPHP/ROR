@@ -100,3 +100,13 @@ export function resetCurrentUser() {
     type: "APP_ACCOUNT_RESET"
   };
 }
+
+// Update state
+export function updateState(user) {
+  return {
+    type: "APP_UPDATE_STATE",
+    payload: {
+      user: user
+    }
+  };
+}

@@ -7,6 +7,9 @@ const accountReducer = (
     case "APP_ACCOUNT_RESET":
       return { ...state, status: "", err: "", loaded: false, user: {} };
 
+    case "APP_UPDATE_STATE":
+      return { ...state, err: "", user: action.payload.user };
+
     // ------ Requested ------
     case "APP_GET_CURRENT_USER_REQUESTED":
       return { ...state, loaded: false };

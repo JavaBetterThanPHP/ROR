@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getLoggedUser } from "../../redux/actions/account";
+import { getLoggedUser, updateState } from "../../redux/actions/account";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import DashboardPostsTable from "./DashboardPostsTable";
 import { removeAPost } from "../../redux/actions/posts";
@@ -14,6 +14,7 @@ class DashboardPostsContainer extends React.Component {
     this.props.account.user.posts = this.props.account.user.posts.filter(e => {
       return e.id !== id;
     });
+    this.props.updateState(this.props.account.user);
     this.props.removePost(id);
   };
 
@@ -36,7 +37,8 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = dispatch => ({
   getLoggedUser: () => dispatch(getLoggedUser(dispatch)),
-  removePost: id => dispatch(removeAPost(id, dispatch))
+  removePost: id => dispatch(removeAPost(id, dispatch)),
+  updateState: user => dispatch(updateState(user))
 });
 
 export default connect(

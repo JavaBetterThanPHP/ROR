@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 
 export function PostsList({ posts = [], img = "", text = "" }) {
   return posts.length > 0 ? (
-    posts.map(post => <PostComponent key={post._id} post={post} />)
+    posts.map(post => <PostComponent key={post.id} post={post} />)
   ) : (
     <div
       style={{

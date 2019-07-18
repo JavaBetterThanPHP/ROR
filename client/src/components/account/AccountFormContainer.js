@@ -15,9 +15,6 @@ class AccountFormContainer extends React.Component {
             enableReinitialize
             initialValues={{
               email: "",
-              firstname: "",
-              lastname: "",
-              birthdate: moment().format("YYYY-MM-DD"),
               description: "",
               ...this.props.account.user,
               firstname: this.props.account.user.firstname

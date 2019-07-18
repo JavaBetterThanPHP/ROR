@@ -74,7 +74,6 @@ export function getAllPosts(dispatch) {
       }
     })
     .then(data => {
-      console.log(data);
       dispatch({
         type: "APP_GET_ALL_POST_SUCCEED",
         payload: {
@@ -99,7 +98,7 @@ export function getAllPosts(dispatch) {
   };
 }
 
-// ---- GET /posts/?_id=:id -----
+// ---- GET /posts/id -----
 export function getOnePost(postId, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
@@ -119,7 +118,6 @@ export function getOnePost(postId, dispatch) {
       }
     })
     .then(data => {
-      console.log(data);
       dispatch({
         type: "APP_GET_ONE_POST_SUCCEED",
         payload: {
@@ -155,7 +153,7 @@ export function likeAPost(post, dispatch) {
       "Content-Type": "application/json"
     },
     mode: "cors",
-    body: JSON.stringify({ _id: post._id })
+    body: JSON.stringify({ id: post.id })
   })
     .then(response => {
       if (response.status === 200) {
@@ -192,7 +190,7 @@ export function unlikeAPost(post, dispatch) {
       "Content-Type": "application/json"
     },
     mode: "cors",
-    body: JSON.stringify({ _id: post._id })
+    body: JSON.stringify({ id: post.id })
   })
     .then(response => {
       if (response.status === 200) {
