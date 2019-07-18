@@ -33,7 +33,7 @@ class HeaderContainer extends React.Component {
           <Container fixed>
             <Toolbar>
               <Typography style={this.style.title} variant="h6">
-                MERDENIUM
+                ==Raìlìum==
               </Typography>
 
               {/* MENU FOR LOGGED USERS */}

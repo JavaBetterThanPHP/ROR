@@ -119,7 +119,7 @@ export function getOnePost(postId, dispatch) {
       }
     })
     .then(data => {
-      console.log(data)
+      console.log(data);
       dispatch({
         type: "APP_GET_ONE_POST_SUCCEED",
         payload: {
@@ -215,5 +215,40 @@ export function unlikeAPost(post, dispatch) {
 
   return {
     type: "APP_REMOVE_LIKE_POST_REQUESTED"
+  };
+}
+
+// DELETE /posts
+export function removeAPost(postID, dispatch) {
+  const TOKEN = window.localStorage.getItem("token");
+
+  fetch(BASE_URL + "/posts/" + postID, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + TOKEN,
+      "Content-Type": "application/json"
+    },
+    mode: "cors"
+  })
+    .then(response => {
+      if (response.status === 204) {
+        return response.json();
+      } else {
+        return new Promise("Erreur");
+      }
+    })
+    .then(data => {
+      dispatch({
+        type: "APP_REMOVE_POST_SUCCEED"
+      });
+    })
+    .catch(e => {
+      dispatch({
+        type: "APP_REMOVE_POST_FAILED"
+      });
+    });
+
+  return {
+    type: "APP_REMOVE_POST_REQUESTED"
   };
 }

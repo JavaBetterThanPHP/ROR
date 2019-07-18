@@ -15,20 +15,23 @@ class AccountFormContainer extends React.Component {
             enableReinitialize
             initialValues={{
               email: "",
-              name: "",
-              surname: "",
+              firstname: "",
+              lastname: "",
               birthdate: moment().format("YYYY-MM-DD"),
               description: "",
-              ...this.props.account.user
+              ...this.props.account.user,
+              firstname: this.props.account.user.firstname
+                ? this.props.account.user.firstname
+                : "",
+              lastname: this.props.account.user.lastname
+                ? this.props.account.user.lastname
+                : "",
+              birthdate: this.props.account.user.birthdate
+                ? this.props.account.user.birthdate
+                : moment().format("YYYY-MM-DD")
             }}
             onSubmit={(values, actions) => {
-              // Duplication
-              var payload = { ...values };
-
-              // Suppression des clefs inutiles
-              delete payload.__v;
-
-              this.props.updateLoggedUser(payload);
+              this.props.updateLoggedUser(values);
               actions.setSubmitting(false);
             }}
             render={({ values, handleChange, handleBlur, isSubmitting }) => (
@@ -37,6 +40,7 @@ class AccountFormContainer extends React.Component {
                   id="email"
                   name="email"
                   type="text"
+                  disabled={true}
                   autoComplete="false"
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -48,13 +52,13 @@ class AccountFormContainer extends React.Component {
                 <br />
 
                 <TextField
-                  id="name"
-                  name="name"
+                  id="firstname"
+                  name="firstname"
                   type="text"
                   autoComplete="false"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.name}
+                  value={values.firstname}
                   label="Firstname"
                   margin="normal"
                   fullWidth
@@ -62,13 +66,13 @@ class AccountFormContainer extends React.Component {
                 <br />
 
                 <TextField
-                  id="surname"
-                  name="surname"
+                  id="lastname"
+                  name="lastname"
                   type="text"
                   autoComplete="false"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.surname}
+                  value={values.lastname}
                   label="Lastname"
                   margin="normal"
                   fullWidth

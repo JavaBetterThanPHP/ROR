@@ -55,7 +55,7 @@ export function updateLoggedUser(user, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
   const DECODED_TOKEN = TOKEN ? jwtDecode(TOKEN) : "";
 
-  fetch(BASE_URL + "/users", {
+  fetch(BASE_URL + "/users/" + DECODED_TOKEN.user_id, {
     method: "PUT",
     headers: {
       Authorization: "Bearer " + TOKEN,

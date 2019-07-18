@@ -61,18 +61,6 @@ export function DashboardPage({ match }) {
                   </Typography>
                 </MenuItem>
               </Link>
-              <Link className={classes.links} to={`${match.url}/follows`}>
-                <MenuItem>
-                  <Typography
-                    className={classes.itemMenu}
-                    color="secondary"
-                    variant="button"
-                    noWrap
-                  >
-                    Follows
-                  </Typography>
-                </MenuItem>
-              </Link>
             </MenuList>
           </Grid>
           <Grid item lg={7} md={7} xs={11}>
@@ -84,7 +72,6 @@ export function DashboardPage({ match }) {
                 component={DashboardPostsPage}
               />
               <Route path={`${match.url}/account`} component={AccountPage} />
-              <Route path={`${match.url}/follows`} />
             </span>
           </Grid>
           <Grid item lg={2} md={2} xs={11}>

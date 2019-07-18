@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { connect } from "react-redux";
-import { appVerifyToken } from "./redux/actions/auth";
+//import { appVerifyToken } from "./redux/actions/auth";
 import MainRouter from "./routes/MainRouter";
 
 class App extends React.Component {
