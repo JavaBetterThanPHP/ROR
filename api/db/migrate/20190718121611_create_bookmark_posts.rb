@@ -1,8 +1,10 @@
-class CreateFavorites < ActiveRecord::Migration[5.2]
+class CreateBookmarkPosts < ActiveRecord::Migration[5.2]
   def change
-    create_table :favorites do |t|
+    create_table :bookmark_posts do |t|
       t.references :user, foreign_key: true
       t.references :post, foreign_key: true
+
+      t.timestamps
     end
   end
 end

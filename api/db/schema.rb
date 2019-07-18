@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_121610) do
+ActiveRecord::Schema.define(version: 201907181216112) do
 
-  create_table "bookmarks", force: :cascade do |t|
+  create_table "bookmark_posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
-    t.index ["post_id"], name: "index_bookmarks_on_post_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_bookmark_posts_on_post_id"
+    t.index ["user_id"], name: "index_bookmark_posts_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -25,11 +27,13 @@ ActiveRecord::Schema.define(version: 2019_07_18_121610) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "favorites", force: :cascade do |t|
+  create_table "favorite_posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
-    t.index ["post_id"], name: "index_favorites_on_post_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_favorite_posts_on_post_id"
+    t.index ["user_id"], name: "index_favorite_posts_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|
