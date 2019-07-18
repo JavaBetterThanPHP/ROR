@@ -15,42 +15,20 @@ class PostDetailContainer extends React.Component {
   };
 
   // Handle btn to bookmark
-  /*handleSaveToBookmarks = () => {
-    var userPayload;
+  handleSaveToBookmarks = () => {
     if (!this.isBookmarked(this.props.posts.post)) {
-      this.props.account.user.bookmarks.push(this.props.posts.post);
-      userPayload = { ...this.props.account.user };
-      delete userPayload.__v;
-      this.props.updateUser(userPayload);
+      // Push into bookmarks
     } else {
-      var new_bookmarks = this.props.account.user.bookmarks.filter(element => {
-        return this.props.posts.post._id !== element._id;
-      });
-      this.props.account.user.bookmarks = new_bookmarks;
-      userPayload = { ...this.props.account.user };
-      delete userPayload.__v;
-      this.props.updateUser(userPayload);
+      // Remove from bookmarks
     }
   };
 
   // Handle btn favorite
   handleFavorite = () => {
-    var userPayload;
     if (!this.isFavorite(this.props.posts.post)) {
-      this.props.account.user.favorites.push(this.props.posts.post);
-      userPayload = { ...this.props.account.user };
-      delete userPayload.__v;
-      this.props.updateUser(userPayload);
-      this.props.putALike(this.props.posts.post);
+      // Push into favorites
     } else {
-      var new_favorites = this.props.account.user.favorites.filter(element => {
-        return this.props.posts.post._id !== element._id;
-      });
-      this.props.account.user.favorites = new_favorites;
-      userPayload = { ...this.props.account.user };
-      delete userPayload.__v;
-      this.props.updateUser(userPayload);
-      this.props.removeALike(this.props.posts.post);
+      // Remove from favorites
     }
   };
 
@@ -58,7 +36,7 @@ class PostDetailContainer extends React.Component {
   isBookmarked = post => {
     return (
       this.props.account.user.bookmarks.filter(element => {
-        return post._id === element._id;
+        return post.id === element.id;
       }).length > 0
     );
   };
@@ -67,10 +45,10 @@ class PostDetailContainer extends React.Component {
   isFavorite = post => {
     return (
       this.props.account.user.favorites.filter(element => {
-        return post._id === element._id;
+        return post.id === element.id;
       }).length > 0
     );
-  };*/
+  };
 
   // render
   render() {
@@ -80,10 +58,10 @@ class PostDetailContainer extends React.Component {
         {this.props.posts.postLoaded && (
           <PostDetailComponent
             post={this.props.posts.post}
-            /*bookmarked={this.isBookmarked(this.props.posts.post)}
+            bookmarked={this.isBookmarked(this.props.posts.post)}
             liked={this.isFavorite(this.props.posts.post)}
             handleSaveToBookmarks={this.handleSaveToBookmarks}
-            handleFavorite={this.handleFavorite}*/
+            handleFavorite={this.handleFavorite}
           />
         )}
 

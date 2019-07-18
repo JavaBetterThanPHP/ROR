@@ -48,10 +48,10 @@ export default function PostDetailComponent({
     user: { firstname: "", lastname: "" },
     type: ""
   },
-  handleSaveToBookmarks = () => {},
-  handleFavorite = () => {},
-  bookmarked = false,
-  liked = false
+  handleSaveToBookmarks,
+  handleFavorite,
+  bookmarked,
+  liked
 }) {
   const classes = useStyles();
 
@@ -119,7 +119,6 @@ export default function PostDetailComponent({
               <Button
                 variant="outlined"
                 size="small"
-                disabled={true} // NOT WORKING
                 className={classes.button}
                 onClick={handleSaveToBookmarks}
               >
@@ -135,7 +134,6 @@ export default function PostDetailComponent({
               <Button
                 variant="outlined"
                 size="small"
-                disabled={true} // NOT WORKING
                 className={classes.button}
                 onClick={handleFavorite}
               >

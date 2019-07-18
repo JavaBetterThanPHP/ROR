@@ -5,6 +5,7 @@ import { AppBar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getLoggedUser } from "../../redux/actions/account";
+import train from "../../img/train.svg";
 
 class HeaderContainer extends React.Component {
   style = {
@@ -32,6 +33,7 @@ class HeaderContainer extends React.Component {
         <AppBar position="static" color="default">
           <Container fixed>
             <Toolbar>
+              <img src={train} width={38} />
               <Typography style={this.style.title} variant="h6">
                 ==Raìlìum==
               </Typography>
