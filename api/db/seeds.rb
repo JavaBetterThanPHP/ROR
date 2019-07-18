@@ -40,9 +40,9 @@ end
         description: Faker::Lorem.sentence(30),
         date: Faker::Date.birthday(1,10),
         timeToRead: Faker::Number.between(3,12),
-        mainImage: Faker::Internet.url,
+        mainImage: Faker::Internet.url('picsum.photos','/400'),
         score: Faker::Number.between(13, 247),
-        content: Faker::Books::Lovecraft.paragraphs(5),
+        content: '{"blocks":[{"key":"aofhh","text":"Why ?","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":5,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"7tnmj","text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor tristique libero, quis facilisis erat convallis in. Fusce dictum risus eget dui ultricies, at porta odio semper. Curabitur a laoreet magna. Praesent eros ligula, porttitor sit amet vulputate et, ullamcorper eget purus. Cras ornare, massa ac mollis egestas, nunc tortor maximus mi, in finibus lectus mi in tortor. In vehicula sollicitudin justo non scelerisque. Morbi ac sem eget nisi sollicitudin tincidunt at nec nisl.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7lflq","text":"When ?","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":6,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"4m6b3","text":"Quisque eget turpis sit amet turpis iaculis laoreet. Fusce tincidunt non urna eget molestie. Morbi molestie condimentum mauris sagittis ultrices. Nunc at lorem ligula. Morbi vitae rhoncus eros. Sed egestas risus diam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut vestibulum sem sed purus posuere, et tempor nulla pellentesque. Etiam diam ante, pharetra ac auctor vel, ornare id leo. Vivamus non scelerisque massa. Integer eleifend ante orci, a dictum dui congue sed. Nam dapibus augue eget cursus elementum. Vestibulum justo ante, molestie sit amet malesuada ac, vestibulum ut mi. Sed eleifend quis leo a egestas. Curabitur facilisis nisi eu est ultrices pretium.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6jmau","text":"Anonymous.","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":10,"style":"ITALIC"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
         type: Type.find(Faker::Number.between(1,100)),
         user: User.find(Faker::Number.between(1,100))
     )
@@ -51,7 +51,7 @@ end
     post.tags << Tag.find(Faker::Number.between(1,100))
 end
 
-500.times do
+100.times do
     user = User.find(Faker::Number.between(1,100))
     user.favorites << Post.find(Faker::Number.between(1,100))
     user.bookmarks << Post.find(Faker::Number.between(1,100))

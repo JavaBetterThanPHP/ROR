@@ -38,20 +38,20 @@ const useStyles = makeStyles(theme => ({
 
 export default function PostDetailComponent({
   post = {
-    _id: "",
+    id: "",
     title: "",
     description: "",
+    mainImage: "",
     score: "",
     date: moment().format("DD-MM-YYYY"),
-    timetoread: 5,
-    user: { name: "", surname: "" },
-    tags: [],
+    timeToRead: 5,
+    user: { firstname: "", lastname: "" },
     type: ""
   },
-  handleSaveToBookmarks,
-  handleFavorite,
-  bookmarked,
-  liked
+  handleSaveToBookmarks = () => {},
+  handleFavorite = () => {},
+  bookmarked = false,
+  liked = false
 }) {
   const classes = useStyles();
 
@@ -97,7 +97,7 @@ export default function PostDetailComponent({
                 <img
                   className={classes.img}
                   alt="complex"
-                  src={post.mainimage}
+                  src={post.mainImage}
                 />
               </ButtonBase>
             </Grid>
@@ -110,7 +110,7 @@ export default function PostDetailComponent({
                 {post.score}
                 <br />
                 <b>Time to read : </b>
-                {post.timetoread}m
+                {post.timeToRead}m
               </Typography>
             </Grid>
 
@@ -147,7 +147,7 @@ export default function PostDetailComponent({
 
             {/* Tags */}
             <Grid item>
-              {post.tags.map(tag => (
+              {/*post.tags.map(tag => (
                 <Chip
                   className={classes.chip}
                   variant="outlined"
@@ -155,7 +155,7 @@ export default function PostDetailComponent({
                   label={tag}
                   size="small"
                 />
-              ))}
+              ))*/}
             </Grid>
             {/* -- */}
 
@@ -186,16 +186,16 @@ export default function PostDetailComponent({
           {/* - AUTHOR AND DATE - */}
           {post.user && (
             <Typography variant="caption" style={{ fontWeight: "bold" }}>
-              {post.user.name +
+              {post.user.firstname +
                 " " +
-                post.user.surname +
+                post.user.lastname +
                 " - Ecrit le " +
-                moment(post.date).format("DD-MM-YYYY à HH:mm")}
+                moment(post.date).format("DD-MM-YYYY")}
             </Typography>
           )}
 
           {/* CONTENT */}
-          <div
+          {<div
             style={{ marginTop: 48 }}
             dangerouslySetInnerHTML={{
               __html: draftToHtml(
@@ -206,7 +206,7 @@ export default function PostDetailComponent({
                 )
               )
             }}
-          />
+          />}
         </Grid>
         {/* ---- */}
 

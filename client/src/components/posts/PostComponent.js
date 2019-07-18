@@ -59,14 +59,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function PostComponent({
   post = {
-    _id: "",
+    id: "",
     title: "",
     description: "",
+    mainImage: "",
     score: "",
     date: moment().format("DD-MM-YYYY"),
-    timetoread: 5,
-    user: { name: "", surname: "" },
-    tags: [],
+    timeToRead: 5,
+    //user: { name: "", surname: "" },
     type: ""
   }
 }) {
@@ -101,12 +101,12 @@ export default function PostComponent({
           alignItems="flex-start"
         >
           <Grid item>
-            <Link to={"/posts/" + post._id}>
+            <Link to={"/posts/" + post.id}>
               <ButtonBase className={classes.image}>
                 <img
                   className={classes.img}
                   alt="complex"
-                  src={post.mainimage}
+                  src={post.mainImage}
                 />
               </ButtonBase>
             </Link>
@@ -118,7 +118,7 @@ export default function PostComponent({
                 {post.title}
 
                 {/* - Tags - */}
-                {post.tags.map(tag => (
+                {/*post.tags.map(tag => (
                   <Chip
                     className={classes.chip}
                     variant="outlined"
@@ -126,7 +126,7 @@ export default function PostComponent({
                     label={tag}
                     size="small"
                   />
-                ))}
+                ))*/}
               </Typography>
 
               {/* - DESCRIPTION - */}
@@ -143,17 +143,17 @@ export default function PostComponent({
                 {"Score : " +
                   post.score +
                   " - Time to read : " +
-                  post.timetoread}
+                  post.timeToRead}
               </Typography>
 
               {/* - AUTHOR AND DATE - */}
               {post.user && (
                 <Typography variant="caption" style={{ fontWeight: "bold" }}>
-                  {post.user.name +
+                  {post.user.firstname +
                     " " +
-                    post.user.surname +
+                    post.user.lastname +
                     " - Ecrit le " +
-                    moment(post.date).format("DD-MM-YYYY à HH:mm")}
+                    moment(post.date).format("DD-MM-YYYY")}
                 </Typography>
               )}
             </CardContent>

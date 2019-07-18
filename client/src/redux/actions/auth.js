@@ -14,7 +14,11 @@ export function appLogin(email, password, dispatch) {
     })
   })
     .then(response => {
-      if (response.status === 201) {
+      if (response.status === 200) {
+        window.localStorage.setItem(
+          "token",
+          response.headers.get("Access-Token")
+        );
         return response.json();
       } else if (response.status === 400) {
         return Promise.reject("Invalid email/password");
@@ -23,14 +27,11 @@ export function appLogin(email, password, dispatch) {
       }
     })
     .then(data => {
-      // Sauvegarde en localStorage
-      window.localStorage.setItem("token", data.token);
-
       // Succeed
       dispatch({
         type: "APP_LOGIN_SUCCEED",
         payload: {
-          token: data.token
+          token: window.localStorage.getItem("token")
         }
       });
     })
@@ -66,7 +67,7 @@ export function appVerifyToken(dispatch) {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 401) {
-        return Promise.reject("");
+        return Promise.reject("Unauthorized");
       } else {
         return Promise.reject("Unexpected error");
       }
@@ -118,7 +119,7 @@ export function appRegister(email, password, dispatch) {
       if (response.status === 201) {
         return response.json();
       } else if (response.status === 400) {
-        return Promise.reject("Unexpected error");
+        return Promise.reject("Bad request");
       } else {
         return Promise.reject("Unexpected error");
       }

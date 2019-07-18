@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 const LoginFormRejected = ({ message }) => {
   const classes = useStyles();
   return (
-    <Paper className={classes.root} elevation='1'>
+    <Paper className={classes.root}>
       <Typography component="p">{message}</Typography>
     </Paper>
   );

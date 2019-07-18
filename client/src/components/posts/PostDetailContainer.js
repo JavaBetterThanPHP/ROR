@@ -15,7 +15,7 @@ class PostDetailContainer extends React.Component {
   };
 
   // Handle btn to bookmark
-  handleSaveToBookmarks = () => {
+  /*handleSaveToBookmarks = () => {
     var userPayload;
     if (!this.isBookmarked(this.props.posts.post)) {
       this.props.account.user.bookmarks.push(this.props.posts.post);
@@ -70,7 +70,7 @@ class PostDetailContainer extends React.Component {
         return post._id === element._id;
       }).length > 0
     );
-  };
+  };*/
 
   // render
   render() {
@@ -80,10 +80,10 @@ class PostDetailContainer extends React.Component {
         {this.props.posts.postLoaded && (
           <PostDetailComponent
             post={this.props.posts.post}
-            bookmarked={this.isBookmarked(this.props.posts.post)}
+            /*bookmarked={this.isBookmarked(this.props.posts.post)}
             liked={this.isFavorite(this.props.posts.post)}
             handleSaveToBookmarks={this.handleSaveToBookmarks}
-            handleFavorite={this.handleFavorite}
+            handleFavorite={this.handleFavorite}*/
           />
         )}
 

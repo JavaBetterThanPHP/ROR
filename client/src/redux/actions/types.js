@@ -23,7 +23,9 @@ export function getAllTypes(dispatch) {
       dispatch({
         type: "APP_GET_ALL_TYPE_SUCCEED",
         payload: {
-          types: data,
+          types: data.sort(function(a, b) {
+            return a.name.localeCompare(b.name);
+          }),
           status: "Retrieving succeed."
         }
       });

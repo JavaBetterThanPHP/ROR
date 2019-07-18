@@ -10,7 +10,7 @@ class Api::V1::PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    render json: @post.as_json(:include => [:user,:type,:tags,:comments])
+    render json: @post.as_json(:include => [:user,:type])
   end
 
   # POST /posts

@@ -68,32 +68,32 @@ const NewPostFormik = ({
         />
       </Grid>
 
-      {/* ----- TIMETOREAD ----- */}
+      {/* ----- timeToRead ----- */}
       <Grid item lg={3}>
         <TextField
-          id="timetoread"
-          name="timetoread"
+          id="timeToRead"
+          name="timeToRead"
           type="number"
           autoComplete="false"
           onChange={handleChange}
           onBlur={handleBlur}
-          value={values.timetoread}
+          value={values.timeToRead}
           label="Time to read"
           margin="normal"
           fullWidth
         />
       </Grid>
 
-      {/* ----- MAINIMAGE ----- */}
+      {/* ----- mainImage ----- */}
       <Grid item lg={8}>
         <TextField
-          id="mainimage"
-          name="mainimage"
+          id="mainImage"
+          name="mainImage"
           type="text"
           autoComplete="false"
           onChange={handleChange}
           onBlur={handleBlur}
-          value={values.mainimage}
+          value={values.mainImage}
           label="Image URL"
           margin="normal"
           fullWidth
@@ -105,18 +105,18 @@ const NewPostFormik = ({
         <FormControl style={{ width: "100%" }}>
           <InputLabel htmlFor="type-helper">Type</InputLabel>
           <Select
-            id="type"
-            name="type"
+            id="type_id"
+            name="type_id"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.type}
+            value={values.type_id}
             fullWidth
             input={<Input name="type" id="type-helper" />}
           >
             {!values.typeOption.loaded && <MenuItem value="">Empty</MenuItem>}
             {values.typeOption.types &&
               values.typeOption.types.map(option => (
-                <MenuItem key={option._id} value={option._id}>
+                <MenuItem key={option.id} value={option.id}>
                   {option.name}
                 </MenuItem>
               ))}
@@ -169,10 +169,11 @@ const formikEnhancer = withFormik({
     return {
       title: "",
       description: "",
-      timetoread: 1,
-      mainimage: "",
+      timeToRead: 1,
+      mainImage: "",
       content: EditorState.createEmpty(),
-      type: "",
+      type_id: "",
+      score: 0,
       typeOption: props.options
     };
   },
@@ -183,6 +184,7 @@ const formikEnhancer = withFormik({
       ...values,
       content: JSON.stringify(convertToRaw(values.content.getCurrentContent()))
     });
+    console.log(values);
     setSubmitting(false);
   },
 

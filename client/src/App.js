@@ -6,7 +6,7 @@ import MainRouter from "./routes/MainRouter";
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.verifyToken();
+    //this.props.verifyToken();
   }
 
   render() {
@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionToProps = dispatch => ({
-  verifyToken: () => dispatch(appVerifyToken(dispatch))
+  //verifyToken: () => dispatch(appVerifyToken(dispatch))
 });
 
 export default connect(

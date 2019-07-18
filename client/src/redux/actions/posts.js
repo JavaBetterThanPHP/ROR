@@ -13,7 +13,7 @@ export function postAPost(post, dispatch) {
       "Content-Type": "application/json"
     },
     mode: "cors",
-    body: JSON.stringify({ ...post, user: { id: DECODED_TOKEN.id } })
+    body: JSON.stringify({ ...post, user: { id: DECODED_TOKEN.user_id } })
   })
     .then(response => {
       if (response.status === 200) {
@@ -54,11 +54,11 @@ export function resetStatus() {
   };
 }
 
-// ---- GET /posts/all -----
+// ---- GET /posts -----
 export function getAllPosts(dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
-  fetch(BASE_URL + "/posts/all", {
+  fetch(BASE_URL + "/posts", {
     method: "GET",
     headers: {
       Authorization: "Bearer " + TOKEN,
@@ -74,6 +74,7 @@ export function getAllPosts(dispatch) {
       }
     })
     .then(data => {
+      console.log(data);
       dispatch({
         type: "APP_GET_ALL_POST_SUCCEED",
         payload: {
@@ -98,11 +99,11 @@ export function getAllPosts(dispatch) {
   };
 }
 
-// ---- GET /posts/all?_id=:id -----
+// ---- GET /posts/?_id=:id -----
 export function getOnePost(postId, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
-  fetch(BASE_URL + "/posts/all?_id=" + postId, {
+  fetch(BASE_URL + "/posts/" + postId, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + TOKEN,
@@ -118,10 +119,11 @@ export function getOnePost(postId, dispatch) {
       }
     })
     .then(data => {
+      console.log(data)
       dispatch({
         type: "APP_GET_ONE_POST_SUCCEED",
         payload: {
-          post: data[0],
+          post: data,
           status: "Retrieving succeed."
         }
       });

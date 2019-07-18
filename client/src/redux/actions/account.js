@@ -8,7 +8,7 @@ export function getLoggedUser(dispatch) {
   const TOKEN = window.localStorage.getItem("token");
   const DECODED_TOKEN = TOKEN ? jwtDecode(TOKEN) : "";
 
-  fetch(BASE_URL + "/users?_id=" + DECODED_TOKEN.id, {
+  fetch(BASE_URL + "/users/" + DECODED_TOKEN.user_id, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + TOKEN,
@@ -55,7 +55,7 @@ export function getLoggedUser(dispatch) {
 export function updateLoggedUser(user, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
   const DECODED_TOKEN = TOKEN ? jwtDecode(TOKEN) : "";
-  
+
   fetch(BASE_URL + "/users", {
     method: "PUT",
     headers: {
@@ -63,7 +63,7 @@ export function updateLoggedUser(user, dispatch) {
       "Content-Type": "application/json"
     },
     mode: "cors",
-    body: JSON.stringify({ ...user, id: DECODED_TOKEN.id })
+    body: JSON.stringify({ ...user, id: DECODED_TOKEN.user_id })
   })
     .then(response => {
       if (response.status === 200) {
