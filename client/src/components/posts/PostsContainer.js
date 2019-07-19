@@ -40,6 +40,15 @@ class PostsContainer extends React.Component {
     }
   };
 
+  selectedType = () => {
+    if (this.state.currentType !== -1) {
+      return this.props.types.types.filter(e => {
+        return e.id === this.state.currentType;
+      })[0];
+    }
+    return null;
+  };
+
   render() {
     return (
       <>
@@ -80,6 +89,7 @@ class PostsContainer extends React.Component {
               name="type_id"
               style={{
                 margin: 40,
+                marginBottom: 20,
                 width: 400
               }}
               onChange={this.handleChangeType}
@@ -95,6 +105,11 @@ class PostsContainer extends React.Component {
                 ))}
             </Select>
 
+            {this.selectedType() && (
+              <Typography style={{ marginLeft: 48, marginBottom: 48 }} variant="subtitle1">
+                <b>{this.selectedType().description}</b>
+              </Typography>
+            )}
             <PostsList
               posts={this.handleFilterType(this.props.posts.posts)}
               img={dreamer}

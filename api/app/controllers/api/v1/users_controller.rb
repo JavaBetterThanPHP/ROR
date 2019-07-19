@@ -11,7 +11,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user.as_json(:include =>[:posts,:bookmarks,:favorites])
+    render json: @user.as_json(:include =>[:posts => {:include => [:type]}, :bookmarks => {:include => [:type, :user]},:favorites  => {} ])
   end
   
   # POST /users

@@ -159,11 +159,13 @@ export default function PostComponent({
             </CardContent>
           </Grid>
           <Grid item>
-            <div className={classes.type}>
-              <div className={classes.typeColor} style={setBackgroundType()}>
-                {post.type.name}
+            {post.type && (
+              <div className={classes.type}>
+                <div className={classes.typeColor} style={setBackgroundType()}>
+                  {post.type.name}
+                </div>
               </div>
-            </div>
+            )}
           </Grid>
         </Grid>
       </Card>
