@@ -1,7 +1,8 @@
 const jwtDecoder = require("jwt-decode");
 const BASE_URL = "http://localhost:3000/api/v1";
 
-// ---- POST /posts ----
+// POST /posts
+// ------------------------------------------
 export function postAPost(post, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
   const DECODED_TOKEN = TOKEN ? jwtDecoder(TOKEN) : "";
@@ -47,14 +48,16 @@ export function postAPost(post, dispatch) {
   };
 }
 
-// ---- reset status ----
+// Reset status
+// ------------------------------------------
 export function resetStatus() {
   return {
     type: "APP_POST_STATUS_NEW_POST_RESET"
   };
 }
 
-// ---- GET /posts -----
+// GET /posts
+// ------------------------------------------
 export function getAllPosts(dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
@@ -98,7 +101,8 @@ export function getAllPosts(dispatch) {
   };
 }
 
-// ---- GET /posts/id -----
+// GET /posts/:id
+// ------------------------------------------
 export function getOnePost(postId, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
@@ -142,81 +146,8 @@ export function getOnePost(postId, dispatch) {
   };
 }
 
-// PUT /posts/like
-export function likeAPost(post, dispatch) {
-  const TOKEN = window.localStorage.getItem("token");
-
-  fetch(BASE_URL + "/posts/like", {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + TOKEN,
-      "Content-Type": "application/json"
-    },
-    mode: "cors",
-    body: JSON.stringify({ id: post.id })
-  })
-    .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        return new Promise("Erreur");
-      }
-    })
-    .then(data => {
-      dispatch({
-        type: "APP_PUT_LIKE_POST_SUCCEED"
-      });
-    })
-    .catch(e => {
-      console.error(e);
-      dispatch({
-        type: "APP_PUT_LIKE_POST_FAILED"
-      });
-    });
-
-  return {
-    type: "APP_PUT_LIKE_POST_REQUESTED"
-  };
-}
-
-// PUT /posts/like
-export function unlikeAPost(post, dispatch) {
-  const TOKEN = window.localStorage.getItem("token");
-
-  fetch(BASE_URL + "/posts/unlike", {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + TOKEN,
-      "Content-Type": "application/json"
-    },
-    mode: "cors",
-    body: JSON.stringify({ id: post.id })
-  })
-    .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        return new Promise("Erreur");
-      }
-    })
-    .then(data => {
-      dispatch({
-        type: "APP_REMOVE_LIKE_POST_SUCCEED"
-      });
-    })
-    .catch(e => {
-      console.error(e);
-      dispatch({
-        type: "APP_REMOVE_LIKE_POST_FAILED"
-      });
-    });
-
-  return {
-    type: "APP_REMOVE_LIKE_POST_REQUESTED"
-  };
-}
-
 // DELETE /posts
+// ------------------------------------------
 export function removeAPost(postID, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
@@ -230,15 +161,12 @@ export function removeAPost(postID, dispatch) {
   })
     .then(response => {
       if (response.status === 204) {
-        return response.json();
+        dispatch({
+          type: "APP_REMOVE_POST_SUCCEED"
+        });
       } else {
         return new Promise("Erreur");
       }
-    })
-    .then(data => {
-      dispatch({
-        type: "APP_REMOVE_POST_SUCCEED"
-      });
     })
     .catch(e => {
       dispatch({
@@ -248,5 +176,149 @@ export function removeAPost(postID, dispatch) {
 
   return {
     type: "APP_REMOVE_POST_REQUESTED"
+  };
+}
+
+// POST /favorite_posts
+// ------------------------------------------
+export function likeAPost(post, dispatch) {
+  const TOKEN = window.localStorage.getItem("token");
+
+  fetch(BASE_URL + "/favorite_posts", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + TOKEN,
+      "Content-Type": "application/json"
+    },
+    mode: "cors",
+    body: JSON.stringify({ post_id: post.id })
+  })
+    .then(response => {
+      if (response.status === 201) {
+        return response.json();
+      } else {
+        return new Promise("Erreur");
+      }
+    })
+    .then(data => {
+      dispatch({
+        type: "APP_LIKE_POST_SUCCEED"
+      });
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch({
+        type: "APP_LIKE_POST_FAILED"
+      });
+    });
+
+  return {
+    type: "APP_LIKE_POST_REQUESTED"
+  };
+}
+
+// DELETE /favorite_posts/:id
+// ------------------------------------------
+export function unlikeAPost(post, dispatch) {
+  const TOKEN = window.localStorage.getItem("token");
+
+  fetch(BASE_URL + "/favorite_posts/" + post.id, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + TOKEN,
+      "Content-Type": "application/json"
+    },
+    mode: "cors"
+  })
+    .then(response => {
+      if (response.status === 204) {
+        dispatch({
+          type: "APP_UNLIKE_POST_SUCCEED"
+        });
+      } else {
+        return new Promise("Erreur");
+      }
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch({
+        type: "APP_UNLIKE_POST_FAILED"
+      });
+    });
+
+  return {
+    type: "APP_UNLIKE_POST_REQUESTED"
+  };
+}
+
+// POST /bookmark_posts
+// ------------------------------------------
+export function bookmarkAPost(post, dispatch) {
+  const TOKEN = window.localStorage.getItem("token");
+
+  fetch(BASE_URL + "/bookmark_posts", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + TOKEN,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ post_id: post.id }),
+    mode: "cors"
+  })
+    .then(response => {
+      if (response.status === 201) {
+        return response.json();
+      } else {
+        return new Promise("Erreur");
+      }
+    })
+    .then(data => {
+      dispatch({
+        type: "APP_BOOKMARK_POST_SUCCEED"
+      });
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch({
+        type: "APP_BOOKMARK_POST_FAILED"
+      });
+    });
+
+  return {
+    type: "APP_BOOKMARK_POST_REQUESTED"
+  };
+}
+
+// DELETE /bookmark_posts/:id
+// ------------------------------------------
+export function unbookmarkAPost(post, dispatch) {
+  const TOKEN = window.localStorage.getItem("token");
+
+  fetch(BASE_URL + "/bookmark_posts/" + post.id, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + TOKEN,
+      "Content-Type": "application/json"
+    },
+    mode: "cors"
+  })
+    .then(response => {
+      if (response.status === 204) {
+        dispatch({
+          type: "APP_UNBOOKMARK_POST_SUCCEED"
+        });
+      } else {
+        return new Promise("Erreur");
+      }
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch({
+        type: "APP_UNBOOKMARK_POST_FAILED"
+      });
+    });
+
+  return {
+    type: "APP_UNBOOKMARK_POST_REQUESTED"
   };
 }

@@ -30,19 +30,25 @@ const postsReducer = (
     case "APP_GET_ONE_POST_REQUESTED":
       return { ...state, postLoaded: false };
 
-    case "APP_PUT_LIKE_POST_REQUESTED":
-      return { ...state };
-
-    case "APP_REMOVE_LIKE_POST_REQUESTED":
-      return { ...state };
-
     case "APP_REMOVE_POST_REQUESTED":
+      return { ...state };
+
+    case "APP_LIKE_POST_REQUESTED":
+      return { ...state };
+
+    case "APP_UNLIKE_POST_REQUESTED":
+      return { ...state };
+
+    case "APP_BOOKMARK_POST_REQUESTED":
+      return { ...state };
+
+    case "APP_UNBOOKMARK_POST_REQUESTED":
       return { ...state };
 
     // ==========================
     // -------- Succeed ---------
     // ==========================
-    
+
     case "APP_POST_NEW_POST_SUCCEED": {
       return {
         ...state,
@@ -69,24 +75,34 @@ const postsReducer = (
       };
     }
 
-    case "APP_PUT_LIKE_POST_SUCCEED": {
-      return {
-        ...state,
-        post: { ...state.post, score: state.post.score + 1 }
-      };
-    }
-
-    case "APP_REMOVE_LIKE_POST_SUCCEED": {
-      return {
-        ...state,
-        post: { ...state.post, score: state.post.score - 1 }
-      };
-    }
-
     case "APP_REMOVE_POST_SUCCEED": {
       return {
         ...state,
         post: {}
+      };
+    }
+
+    case "APP_LIKE_POST_SUCCEED": {
+      return {
+        ...state
+      };
+    }
+
+    case "APP_UNLIKE_POST_SUCCEED": {
+      return {
+        ...state
+      };
+    }
+
+    case "APP_BOOKMARK_POST_SUCCEED": {
+      return {
+        ...state
+      };
+    }
+
+    case "APP_UNBOOKMARK_POST_SUCCEED": {
+      return {
+        ...state
       };
     }
 
@@ -123,13 +139,25 @@ const postsReducer = (
       };
     }
 
-    case "APP_REMOVE_LIKE_POST_FAILED": {
+    case "APP_LIKE_POST_FAILED": {
       return {
         ...state
       };
     }
 
-    case "APP_REMOVE_POST_FAILED": {
+    case "APP_UNLIKE_POST_FAILED": {
+      return {
+        ...state
+      };
+    }
+
+    case "APP_BOOKMARK_POST_FAILED": {
+      return {
+        ...state
+      };
+    }
+
+    case "APP_UNBOOKMARK_POST_FAILED": {
       return {
         ...state
       };
