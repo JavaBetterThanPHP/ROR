@@ -4,20 +4,30 @@ class Api::V1::FavoritePostsController < ApplicationController
 
   # POST /favorite_posts
   def create
-    @post = FavoritePost.new(post_params)
-    @post.user_id = @current_user.id
+    @favoritepost = FavoritePost.new(post_params)
+    @favoritepost.user_id = @current_user.id
 
-    if @post.save
-      render json: @post, status: :created, location: api_v1_post_url(@post)
+    if @favoritepost.save
+      @post = Post.find(@favoritepost.post_id)
+      @post.increment(:score, 1)
+      if @post.save
+        render json: @favoritepost, status: :created, location: api_v1_favorite_post_url(@favoritepost)
+      else
+        render json: @favoritepost.errors, status: :unprocessable_entity
+      end
     else
-      render json: @post.errors, status: :unprocessable_entity
+      render json: @favoritepost.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /favorite_posts/1
   def destroy
-    @post = FavoritePost.find_by(user_id: @current_user.id, post_id: params[:id])
-    @post.destroy
+    @favoritepost = FavoritePost.find_by(user_id: @current_user.id, post_id: params[:id])
+    if @favoritepost.destroy
+      @post = Post.find(@favoritepost.post_id)
+      @post.decrement(:score, 1)
+      @post.save
+    end
   end
 
   private
