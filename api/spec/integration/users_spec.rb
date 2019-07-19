@@ -78,4 +78,49 @@ describe 'Users API' do
       end
     end
   end
+  path '/users/sign_up' do
+    post 'Register an user' do
+      tags 'Users_Auth'
+      security [ Bearer: [] ]
+      response '200', 'OK' do
+        let(:Authorization){"Bearer#{''}"}
+        run_test!
+        consumes 'application/json', 'application/xml'
+        parameter name: :user, in: :body, schema: {
+          type: :object,
+          properties: {
+            email: { type: :string },
+            password: { type: :string },
+            password_confirmation: { type: :string },
+            birthdate: { type: :string },
+            description: { type: :string },
+            profilePictureUrl: { type: :string },
+            inscriptionDate: { type: :string },
+            firstname: { type: :string },
+            lastname: { type: :string },
+          },
+          required: [ 'email', 'password', 'password_confirmation', 'birthdate', 'description', 'profilePictureUrl', 'inscriptionDate', 'firstname', 'lastname' ]
+        }
+      end
+    end
+  end
+  path '/users/sign_in' do
+    post 'Login an user' do
+      tags 'Users_Auth'
+      security [ Bearer: [] ]
+      response '200', 'OK' do
+        let(:Authorization){"Bearer#{''}"}
+        run_test!
+        consumes 'application/json', 'application/xml'
+        parameter name: :user, in: :body, schema: {
+          type: :object,
+          properties: {
+            email: { type: :string },
+            password: { type: :string },
+          },
+          required: [ 'email', 'password' ]
+        }
+      end
+    end
+  end
 end
