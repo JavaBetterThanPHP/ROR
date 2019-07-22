@@ -5,7 +5,7 @@ down:
 	docker-compose down
 
 run:
-	docker-compose up --build
+	docker-compose up
 
 install:
 	cd client && yarn install
